@@ -5,7 +5,10 @@ A dependency-free, frontend-only Bahasa Malaysia practice app for young learners
 ## Features
 
 - Child-friendly setup with nickname, optional gender and avatar selection
+- 20 large, scrollable avatar choices
 - Ten-question starter activity to initialize the learner's skill profile
+- English interface by default, with Bahasa Melayu and Simplified Chinese options
+- A device-local 4-digit parent PIN gate (initial PIN: `1357`)
 - Ten-question daily challenge
 - Six beginner-friendly skill areas
 - Immediate explanations and optional Malay text-to-speech

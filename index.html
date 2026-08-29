@@ -23,31 +23,39 @@
 
     <section id="onboarding-view" class="onboarding-view" aria-labelledby="onboarding-heading">
       <div class="onboarding-card">
-        <div class="onboarding-brand">
-          <span class="brand-mark" aria-hidden="true">B</span>
-          <strong>Bahasa Bintang</strong>
+        <div class="onboarding-brand-row">
+          <div class="onboarding-brand">
+            <span class="brand-mark" aria-hidden="true">B</span>
+            <strong>Bahasa Bintang</strong>
+          </div>
+          <label class="language-picker">
+            <span data-i18n="language">Language</span>
+            <select class="language-select" aria-label="Interface language">
+              <option value="en">English</option>
+              <option value="ms">Bahasa Melayu</option>
+              <option value="zh">中文</option>
+            </select>
+          </label>
         </div>
-        <span class="eyebrow">Selamat datang</span>
-        <h1 id="onboarding-heading">Mari cipta watak kamu</h1>
-        <p class="onboarding-intro">
-          Selepas ini, jawab 10 soalan pemula supaya latihan kamu bermula pada tahap yang sesuai.
-        </p>
+        <span class="eyebrow" data-i18n="welcome">Welcome</span>
+        <h1 id="onboarding-heading" data-i18n="createCharacter">Create your learner</h1>
+        <p class="onboarding-intro" data-i18n="starterIntro">Next, answer 10 starter questions so the practice can begin at the right level.</p>
 
         <form id="onboarding-form">
-          <label class="field-label" for="onboarding-name">Apakah nama panggilan kamu?</label>
-          <input id="onboarding-name" class="onboarding-input" maxlength="24" autocomplete="off" placeholder="Contoh: Alya" required />
+          <label class="field-label" for="onboarding-name" data-i18n="nickname">What is your nickname?</label>
+          <input id="onboarding-name" class="onboarding-input" maxlength="24" autocomplete="off" placeholder="Example: Alya" data-i18n-placeholder="nameExample" required />
 
           <fieldset class="choice-fieldset">
-            <legend>Jantina <span>(pilihan)</span></legend>
+            <legend><span data-i18n="gender">Gender</span> <span data-i18n="optional">(optional)</span></legend>
             <div class="gender-options">
-              <label><input type="radio" name="gender" value="perempuan" /><span>Perempuan</span></label>
-              <label><input type="radio" name="gender" value="lelaki" /><span>Lelaki</span></label>
-              <label><input type="radio" name="gender" value="tidak-dinyatakan" /><span>Tidak mahu nyatakan</span></label>
+              <label><input type="radio" name="gender" value="perempuan" /><span data-i18n="female">Female</span></label>
+              <label><input type="radio" name="gender" value="lelaki" /><span data-i18n="male">Male</span></label>
+              <label><input type="radio" name="gender" value="tidak-dinyatakan" /><span data-i18n="preferNot">Prefer not to say</span></label>
             </div>
           </fieldset>
 
           <fieldset class="choice-fieldset avatar-fieldset">
-            <legend>Pilih avatar kamu</legend>
+            <legend data-i18n="chooseAvatar">Choose your avatar</legend>
             <div class="avatar-options" role="radiogroup" aria-label="Choose an avatar">
               <button type="button" class="avatar-option selected" data-avatar="🦊" aria-label="Fox avatar" aria-pressed="true">🦊</button>
               <button type="button" class="avatar-option" data-avatar="🐼" aria-label="Panda avatar" aria-pressed="false">🐼</button>
@@ -55,14 +63,28 @@
               <button type="button" class="avatar-option" data-avatar="🐰" aria-label="Rabbit avatar" aria-pressed="false">🐰</button>
               <button type="button" class="avatar-option" data-avatar="🐨" aria-label="Koala avatar" aria-pressed="false">🐨</button>
               <button type="button" class="avatar-option" data-avatar="🦁" aria-label="Lion avatar" aria-pressed="false">🦁</button>
+              <button type="button" class="avatar-option" data-avatar="🐸" aria-label="Frog avatar" aria-pressed="false">🐸</button>
+              <button type="button" class="avatar-option" data-avatar="🐵" aria-label="Monkey avatar" aria-pressed="false">🐵</button>
+              <button type="button" class="avatar-option" data-avatar="🐶" aria-label="Dog avatar" aria-pressed="false">🐶</button>
+              <button type="button" class="avatar-option" data-avatar="🐱" aria-label="Cat avatar" aria-pressed="false">🐱</button>
+              <button type="button" class="avatar-option" data-avatar="🐻" aria-label="Bear avatar" aria-pressed="false">🐻</button>
+              <button type="button" class="avatar-option" data-avatar="🐙" aria-label="Octopus avatar" aria-pressed="false">🐙</button>
+              <button type="button" class="avatar-option" data-avatar="🦄" aria-label="Unicorn avatar" aria-pressed="false">🦄</button>
+              <button type="button" class="avatar-option" data-avatar="🐧" aria-label="Penguin avatar" aria-pressed="false">🐧</button>
+              <button type="button" class="avatar-option" data-avatar="🦋" aria-label="Butterfly avatar" aria-pressed="false">🦋</button>
+              <button type="button" class="avatar-option" data-avatar="🐝" aria-label="Bee avatar" aria-pressed="false">🐝</button>
+              <button type="button" class="avatar-option" data-avatar="🐢" aria-label="Turtle avatar" aria-pressed="false">🐢</button>
+              <button type="button" class="avatar-option" data-avatar="🐬" aria-label="Dolphin avatar" aria-pressed="false">🐬</button>
+              <button type="button" class="avatar-option" data-avatar="🦖" aria-label="Dinosaur avatar" aria-pressed="false">🦖</button>
+              <button type="button" class="avatar-option" data-avatar="🦉" aria-label="Owl avatar" aria-pressed="false">🦉</button>
             </div>
           </fieldset>
 
-          <p id="onboarding-error" class="form-error" role="alert" hidden>Sila masukkan nama panggilan.</p>
+          <p id="onboarding-error" class="form-error" role="alert" hidden data-i18n="nameError">Please enter a nickname.</p>
           <button class="primary-button onboarding-button" type="submit">
-            Mulakan 10 soalan pemula <span aria-hidden="true">→</span>
+            <span data-i18n="startStarter">Start 10 starter questions</span> <span aria-hidden="true">→</span>
           </button>
-          <p class="local-note">⌂ Nama, pilihan dan jawapan kekal pada peranti ini.</p>
+          <p class="local-note" data-i18n="localOnboarding">⌂ Name, choices and answers stay on this device.</p>
         </form>
       </div>
       <div class="onboarding-decoration" aria-hidden="true">
@@ -75,19 +97,29 @@
         <span class="brand-mark" aria-hidden="true">B</span>
         <span>
           <strong>Bahasa Bintang</strong>
-          <small>Belajar sedikit, bersinar selalu</small>
+          <small data-i18n="tagline">Learn a little, shine every day</small>
         </span>
       </a>
 
       <nav class="main-nav" aria-label="Main navigation">
-        <button class="nav-button active" data-view="home">Hari Ini</button>
-        <button class="nav-button" data-view="skills">Kemahiran</button>
-        <button class="nav-button" data-view="parent">Untuk Ibu Bapa</button>
+        <button class="nav-button active" data-view="home" data-i18n="navToday">Today</button>
+        <button class="nav-button" data-view="skills" data-i18n="navSkills">Levels</button>
+        <button class="nav-button" data-view="parent" data-i18n="navParents">For Parents</button>
       </nav>
 
-      <div class="profile-chip" title="Progress is saved only on this device">
-        <span id="profile-avatar" class="avatar" aria-hidden="true">🦊</span>
-        <span><strong id="profile-name">Pelajar</strong><small>Disimpan di sini</small></span>
+      <div class="header-actions">
+        <label class="language-picker header-language-picker">
+          <span data-i18n="language">Language</span>
+          <select class="language-select" aria-label="Interface language">
+            <option value="en">English</option>
+            <option value="ms">Bahasa Melayu</option>
+            <option value="zh">中文</option>
+          </select>
+        </label>
+        <div class="profile-chip" title="Progress is saved only on this device">
+          <span id="profile-avatar" class="avatar" aria-hidden="true">🦊</span>
+          <span><strong id="profile-name">Learner</strong><small data-i18n="savedHere">Saved here</small></span>
+        </div>
       </div>
     </header>
 
@@ -95,23 +127,21 @@
       <section id="home-view" class="view active" aria-labelledby="welcome-heading">
         <div class="hero-card">
           <div class="hero-copy">
-            <span class="eyebrow">Pengembaraan hari ini</span>
-            <h1 id="welcome-heading">Hai, <span id="welcome-name">Pelajar</span>!</h1>
-            <p>
-              Sepuluh soalan kecil. Satu langkah besar untuk lebih yakin berbahasa Melayu.
-            </p>
+            <span class="eyebrow" data-i18n="todayAdventure">Today's adventure</span>
+            <h1 id="welcome-heading"><span data-i18n="hello">Hello</span>, <span id="welcome-name">Learner</span>!</h1>
+            <p data-i18n="heroText">Ten small questions. One big step towards confidence in Bahasa Melayu.</p>
             <button id="start-daily" class="primary-button">
-              <span id="daily-button-label">Mulakan cabaran</span>
+              <span id="daily-button-label">Start challenge</span>
               <span aria-hidden="true">→</span>
             </button>
-            <p class="microcopy">Kira-kira 10 minit · Tiada pemasa · Petunjuk dibenarkan</p>
+            <p class="microcopy" data-i18n="microcopy">About 10 minutes · No timer · Hints allowed</p>
           </div>
 
           <div class="journey-card" aria-label="Today's challenge progress">
             <div class="progress-orbit" id="daily-orbit">
               <div>
                 <strong id="daily-progress-number">0/10</strong>
-                <span>soalan</span>
+                <span data-i18n="questions">questions</span>
               </div>
             </div>
             <div class="mascot" aria-hidden="true">
@@ -124,25 +154,25 @@
         <div class="stat-grid" aria-label="Learning summary">
           <article class="stat-card streak">
             <span class="stat-icon" aria-hidden="true">🔥</span>
-            <div><strong id="streak-value">0</strong><span>hari berturut-turut</span></div>
+            <div><strong id="streak-value">0</strong><span data-i18n="dayStreak">day streak</span></div>
           </article>
           <article class="stat-card coins">
             <span class="stat-icon" aria-hidden="true">●</span>
-            <div><strong id="coin-value">0</strong><span>syiling bintang</span></div>
+            <div><strong id="coin-value">0</strong><span data-i18n="starCoins">star coins</span></div>
           </article>
           <article class="stat-card xp">
             <span class="stat-icon" aria-hidden="true">✦</span>
-            <div><strong id="xp-value">0</strong><span>mata pengalaman</span></div>
+            <div><strong id="xp-value">0</strong><span data-i18n="experience">experience points</span></div>
           </article>
         </div>
 
         <section class="section-block" aria-labelledby="missions-heading">
           <div class="section-heading">
             <div>
-              <span class="eyebrow">Pilih satu misi</span>
-              <h2 id="missions-heading">Belajar mengikut topik</h2>
+              <span class="eyebrow" data-i18n="chooseMission">Choose a mission</span>
+              <h2 id="missions-heading" data-i18n="learnByTopic">Learn by topic</h2>
             </div>
-            <button class="text-button" data-view-link="skills">Lihat semua kemahiran →</button>
+            <button class="text-button" data-view-link="skills"><span data-i18n="viewAll">View all levels</span> →</button>
           </div>
           <div id="mission-grid" class="mission-grid"></div>
         </section>
@@ -151,11 +181,11 @@
       <section id="skills-view" class="view" aria-labelledby="skills-heading">
         <div class="page-heading">
           <div>
-            <span class="eyebrow">Peta pembelajaran</span>
-            <h1 id="skills-heading">Kemahiran saya</h1>
-            <p>Ulang kaji topik yang masih berkembang dan raikan yang sudah dikuasai.</p>
+            <span class="eyebrow" data-i18n="learningMap">Learning map</span>
+            <h1 id="skills-heading" data-i18n="myLevels">My levels</h1>
+            <p data-i18n="skillsIntro">Review developing topics and celebrate the ones already mastered.</p>
           </div>
-          <div class="legend"><span></span> Penguasaan berdasarkan jawapan pada peranti ini</div>
+          <div class="legend"><span></span> <span data-i18n="masteryLegend">Mastery is based on answers on this device</span></div>
         </div>
         <div id="skill-list" class="skill-list"></div>
       </section>
@@ -163,51 +193,55 @@
       <section id="parent-view" class="view" aria-labelledby="parent-heading">
         <div class="page-heading">
           <div>
-            <span class="eyebrow">Ringkasan peribadi</span>
-            <h1 id="parent-heading">Untuk ibu bapa</h1>
-            <p>Semua maklumat ini kekal dalam pelayar pada peranti ini.</p>
+            <span class="eyebrow" data-i18n="privateSummary">Private summary</span>
+            <h1 id="parent-heading" data-i18n="forParents">For parents</h1>
+            <p data-i18n="parentIntro">All information stays in the browser on this device.</p>
           </div>
-          <span class="privacy-badge">⌂ Local sahaja</span>
+          <span class="privacy-badge" data-i18n="localOnly">⌂ Local only</span>
         </div>
 
         <div class="parent-grid">
           <article class="panel parent-summary">
-            <h2>Ringkasan pembelajaran</h2>
-            <div class="summary-row"><span>Jumlah soalan dijawab</span><strong id="total-attempts">0</strong></div>
-            <div class="summary-row"><span>Ketepatan keseluruhan</span><strong id="overall-accuracy">—</strong></div>
-            <div class="summary-row"><span>Kemahiran terkuat</span><strong id="strongest-skill">Belum tersedia</strong></div>
-            <div class="summary-row"><span>Perlu lebih latihan</span><strong id="review-skill">Belum tersedia</strong></div>
+            <h2 data-i18n="learningSummary">Learning summary</h2>
+            <div class="summary-row"><span data-i18n="totalAnswered">Questions answered</span><strong id="total-attempts">0</strong></div>
+            <div class="summary-row"><span data-i18n="overallAccuracy">Overall accuracy</span><strong id="overall-accuracy">—</strong></div>
+            <div class="summary-row"><span data-i18n="strongestLevel">Strongest level</span><strong id="strongest-skill">Not available yet</strong></div>
+            <div class="summary-row"><span data-i18n="needsPractice">Needs more practice</span><strong id="review-skill">Not available yet</strong></div>
           </article>
 
           <article class="panel settings-panel">
-            <h2>Tetapan</h2>
-            <label for="learner-name">Nama paparan pelajar</label>
+            <h2 data-i18n="settings">Settings</h2>
+            <label for="learner-name" data-i18n="displayName">Learner display name</label>
             <div class="inline-form">
-              <input id="learner-name" maxlength="24" placeholder="Contoh: Alya" />
-              <button id="save-name" class="secondary-button">Simpan</button>
+              <input id="learner-name" maxlength="24" placeholder="Example: Alya" data-i18n-placeholder="nameExample" />
+              <button id="save-name" class="secondary-button" data-i18n="save">Save</button>
+            </div>
+
+            <div class="pin-settings">
+              <h3 data-i18n="changePin">Change parent PIN</h3>
+              <div class="pin-change-grid">
+                <input id="current-parent-pin" type="password" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" placeholder="Current PIN" data-i18n-placeholder="currentPin" />
+                <input id="new-parent-pin" type="password" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" placeholder="New 4-digit PIN" data-i18n-placeholder="newPin" />
+                <button id="save-parent-pin" class="secondary-button" data-i18n="savePin">Save PIN</button>
+              </div>
+              <p class="helper-text" data-i18n="pinLocalNote">The initial PIN is 1357. This is a simple device-local parent gate.</p>
             </div>
 
             <div class="backup-actions">
-              <button id="export-progress" class="secondary-button">Eksport kemajuan</button>
-              <label class="secondary-button file-label" for="import-progress">Import kemajuan</label>
+              <button id="export-progress" class="secondary-button" data-i18n="exportProgress">Export progress</button>
+              <label class="secondary-button file-label" for="import-progress" data-i18n="importProgress">Import progress</label>
               <input id="import-progress" type="file" accept="application/json" hidden />
-              <button id="reset-progress" class="danger-button">Tetapkan semula</button>
+              <button id="reset-progress" class="danger-button" data-i18n="resetProgress">Reset progress</button>
             </div>
-            <p class="helper-text">
-              Eksport satu fail sandaran dari semasa ke semasa. Memadam data laman atau bertukar
-              peranti boleh menghilangkan kemajuan yang disimpan.
-            </p>
+            <p class="helper-text" data-i18n="backupHelp">Export a backup occasionally. Clearing site data or changing devices can remove saved progress.</p>
           </article>
         </div>
 
         <article class="panel parent-tip">
           <span aria-hidden="true">💬</span>
           <div>
-            <h2>Perbualan minggu ini</h2>
-            <p>
-              Tanya: <strong>“Apakah makanan kegemaran kamu? Mengapa?”</strong> Terima jawapan
-              pendek dahulu, kemudian bantu tambah satu sebab menggunakan <em>kerana</em>.
-            </p>
+            <h2 data-i18n="conversationWeek">Conversation this week</h2>
+            <p data-i18n-html="conversationTip">Ask: <strong>“Apakah makanan kegemaran kamu? Mengapa?”</strong> Accept a short answer first, then help add one reason using <em>kerana</em>.</p>
           </div>
         </article>
       </section>
@@ -230,9 +264,9 @@
         <div id="question-screen" class="question-screen">
           <div class="question-tags">
             <span id="question-skill" class="skill-pill">Kosa kata</span>
-            <button id="speak-question" class="listen-button" title="Listen to the question">🔊 Dengar</button>
+            <button id="speak-question" class="listen-button" title="Listen to the question">🔊 <span data-i18n="listen">Listen</span></button>
           </div>
-          <p id="question-instruction" class="question-instruction">Pilih jawapan yang betul.</p>
+          <p id="question-instruction" class="question-instruction" data-i18n="chooseAnswer">Choose the correct answer.</p>
           <h2 id="question-prompt"></h2>
           <div id="answer-options" class="answer-options"></div>
           <div id="feedback-box" class="feedback-box" hidden>
@@ -240,21 +274,36 @@
               <strong id="feedback-title"></strong>
               <p id="feedback-text"></p>
             </div>
-            <button id="next-question" class="primary-button">Seterusnya →</button>
+            <button id="next-question" class="primary-button"><span data-i18n="next">Next</span> →</button>
           </div>
         </div>
 
         <div id="completion-screen" class="completion-screen" hidden>
           <div class="celebration" aria-hidden="true">★</div>
-          <span class="eyebrow">Misi selesai!</span>
-          <h2>Bagus sekali, <span id="completion-name">Pelajar</span>!</h2>
+          <span class="eyebrow" data-i18n="missionComplete">Mission complete!</span>
+          <h2><span data-i18n="wellDone">Well done</span>, <span id="completion-name">Learner</span>!</h2>
           <p id="completion-message"></p>
           <div class="completion-stats">
-            <div><strong id="completion-score">0/10</strong><span>betul</span></div>
-            <div><strong id="completion-coins">+0</strong><span>syiling</span></div>
+            <div><strong id="completion-score">0/10</strong><span data-i18n="correct">correct</span></div>
+            <div><strong id="completion-coins">+0</strong><span data-i18n="coins">coins</span></div>
           </div>
-          <button id="finish-session" class="primary-button">Kembali ke halaman utama</button>
+          <button id="finish-session" class="primary-button" data-i18n="backHome">Back to home</button>
         </div>
+      </section>
+    </div>
+
+    <div id="parent-pin-overlay" class="pin-overlay" hidden>
+      <section class="pin-card" role="dialog" aria-modal="true" aria-labelledby="pin-heading">
+        <button id="close-parent-pin" class="icon-button pin-close" aria-label="Close">×</button>
+        <span class="pin-icon" aria-hidden="true">🔒</span>
+        <h2 id="pin-heading" data-i18n="parentPinTitle">Parent access</h2>
+        <p data-i18n="parentPinIntro">Enter the 4-digit parent PIN to view progress and settings.</p>
+        <form id="parent-pin-form">
+          <label for="parent-pin-input" data-i18n="parentPinLabel">Parent PIN</label>
+          <input id="parent-pin-input" type="password" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" autocomplete="off" placeholder="4-digit PIN" data-i18n-placeholder="pinPlaceholder" required />
+          <p id="parent-pin-error" class="form-error" role="alert" hidden data-i18n="pinError">That PIN is not correct.</p>
+          <button class="primary-button" type="submit" data-i18n="unlock">Unlock</button>
+        </form>
       </section>
     </div>
 
