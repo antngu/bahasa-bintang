@@ -52,6 +52,92 @@ button:focus-visible, input:focus-visible, a:focus-visible {
 .ambient-one { top: 32rem; left: -10rem; background: #fbd678; }
 .ambient-two { right: -11rem; bottom: 4rem; background: #bcb3ff; }
 
+.onboarding-view {
+  position: relative;
+  z-index: 30;
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  overflow: hidden;
+  padding: 2rem 1rem;
+  background:
+    radial-gradient(circle at 12% 15%, rgba(255, 201, 77, 0.28), transparent 19rem),
+    radial-gradient(circle at 88% 82%, rgba(118, 99, 235, 0.21), transparent 24rem),
+    #f8f4ec;
+}
+.onboarding-view[hidden] { display: none; }
+.onboarding-card {
+  position: relative;
+  z-index: 2;
+  width: min(680px, 100%);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  border: 1px solid rgba(233, 232, 239, 0.9);
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 30px 80px rgba(54, 47, 105, 0.16);
+}
+.onboarding-brand { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 2.2rem; }
+.onboarding-brand strong { font-size: 1.05rem; }
+.onboarding-card h1 { margin-bottom: 0.65rem; font-size: clamp(2.25rem, 6vw, 3.55rem); line-height: 1.03; letter-spacing: -0.05em; }
+.onboarding-intro { max-width: 35rem; margin-bottom: 2rem; color: var(--muted); line-height: 1.65; }
+.field-label, .choice-fieldset legend { display: block; margin-bottom: 0.55rem; color: var(--ink); font-size: 0.84rem; font-weight: 900; }
+.choice-fieldset legend span { color: var(--muted); font-weight: 700; }
+.onboarding-input {
+  width: 100%;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  color: var(--ink);
+  background: #fafafd;
+  font-size: 1rem;
+  font-weight: 800;
+}
+.onboarding-input:focus { border-color: #a99ff0; }
+.choice-fieldset { margin: 1.6rem 0 0; padding: 0; border: 0; }
+.gender-options { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+.gender-options label { cursor: pointer; }
+.gender-options input { position: absolute; opacity: 0; pointer-events: none; }
+.gender-options span {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  padding: 0.55rem 0.9rem;
+  color: var(--muted);
+  background: white;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+.gender-options input:checked + span { border-color: #8d7fe8; color: var(--purple); background: var(--purple-soft); }
+.gender-options input:focus-visible + span { outline: 3px solid rgba(74, 165, 220, 0.5); outline-offset: 3px; }
+.avatar-options { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.65rem; }
+.avatar-option {
+  aspect-ratio: 1;
+  border: 2px solid var(--line);
+  border-radius: 18px;
+  background: #fafafd;
+  cursor: pointer;
+  font-size: clamp(1.65rem, 5vw, 2.3rem);
+  transition: transform 150ms ease, border-color 150ms ease, background 150ms ease;
+}
+.avatar-option:hover { transform: translateY(-3px); }
+.avatar-option.selected { border-color: var(--purple); background: var(--purple-soft); box-shadow: 0 7px 18px rgba(91, 75, 219, 0.14); }
+.form-error { margin: 1rem 0 0; color: var(--red); font-size: 0.8rem; font-weight: 800; }
+.onboarding-button { width: 100%; margin-top: 1.7rem; }
+.local-note { margin: 1rem 0 0; text-align: center; color: var(--muted); font-size: 0.72rem; }
+.onboarding-decoration span {
+  position: absolute;
+  color: rgba(91, 75, 219, 0.16);
+  font-size: clamp(2rem, 5vw, 5.5rem);
+  font-weight: 900;
+  transform: rotate(-8deg);
+}
+.onboarding-decoration span:nth-child(1) { top: 8%; left: 4%; }
+.onboarding-decoration span:nth-child(2) { top: 16%; right: 5%; transform: rotate(9deg); }
+.onboarding-decoration span:nth-child(3) { right: 2%; bottom: 10%; }
+.onboarding-decoration span:nth-child(4) { bottom: 7%; left: 3%; transform: rotate(7deg); }
+
 .topbar {
   position: sticky;
   top: 0;
@@ -377,6 +463,11 @@ h1, h2, p { margin-top: 0; }
 }
 
 @media (max-width: 620px) {
+  .onboarding-card { padding: 1.7rem 1.25rem; border-radius: 24px; }
+  .onboarding-brand { margin-bottom: 1.6rem; }
+  .avatar-options { grid-template-columns: repeat(3, 1fr); }
+  .gender-options { display: grid; grid-template-columns: 1fr; }
+  .gender-options span { width: 100%; justify-content: center; }
   .topbar { padding: 0 1rem; }
   .brand small { display: none; }
   .shell { width: min(92vw, 560px); }

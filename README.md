@@ -4,6 +4,8 @@ A dependency-free, frontend-only Bahasa Malaysia practice app for young learners
 
 ## Features
 
+- Child-friendly setup with nickname, optional gender and avatar selection
+- Ten-question starter activity to initialize the learner's skill profile
 - Ten-question daily challenge
 - Six beginner-friendly skill areas
 - Immediate explanations and optional Malay text-to-speech

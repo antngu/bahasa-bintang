@@ -1,4 +1,5 @@
 const STORAGE_KEY = 'bahasa-bintang-progress-v1';
+const STARTER_QUESTION_INDEXES = [0, 1, 5, 6, 10, 15, 20, 21, 25, 26];
 
 const SKILLS = {
   diri: { title: 'Diri Saya', subtitle: 'Nama, umur dan perasaan', icon: '👋', color: '#5b4bdb', soft: '#eeebff' },
@@ -48,7 +49,11 @@ const QUESTIONS = [
 ];
 
 const defaultState = () => ({
-  name: 'Pelajar',
+  name: '',
+  gender: '',
+  avatar: '🦊',
+  onboardingComplete: false,
+  starterCompleted: false,
   xp: 0,
   coins: 0,
   streak: 0,
@@ -96,8 +101,10 @@ function showView(name) {
 }
 
 function renderDashboard() {
-  document.querySelectorAll('#profile-name, #welcome-name').forEach((el) => { el.textContent = state.name; });
-  document.getElementById('learner-name').value = state.name === 'Pelajar' ? '' : state.name;
+  const displayName = state.name || 'Pelajar';
+  document.querySelectorAll('#profile-name, #welcome-name').forEach((el) => { el.textContent = displayName; });
+  document.getElementById('profile-avatar').textContent = state.avatar || '🦊';
+  document.getElementById('learner-name').value = state.name || '';
   document.getElementById('streak-value').textContent = state.streak;
   document.getElementById('coin-value').textContent = state.coins;
   document.getElementById('xp-value').textContent = state.xp;
@@ -165,8 +172,10 @@ function seededShuffle(items, seedText) {
 }
 
 function startSession(mode, skill = null) {
-  const pool = skill ? QUESTIONS.filter((question) => question.skill === skill) : QUESTIONS;
-  const count = skill ? Math.min(5, pool.length) : 10;
+  const pool = mode === 'starter'
+    ? STARTER_QUESTION_INDEXES.map((index) => QUESTIONS[index])
+    : skill ? QUESTIONS.filter((question) => question.skill === skill) : QUESTIONS;
+  const count = mode === 'starter' ? 10 : skill ? Math.min(5, pool.length) : 10;
   const seed = mode === 'daily' ? `${localDate()}-daily` : `${Date.now()}-${skill}`;
   session = {
     mode,
@@ -186,7 +195,9 @@ function startSession(mode, skill = null) {
 function renderQuestion() {
   const question = session.questions[session.index];
   session.answered = false;
-  document.getElementById('practice-title').textContent = session.mode === 'daily' ? 'Cabaran Harian' : `Misi: ${SKILLS[session.skill].title}`;
+  document.getElementById('practice-title').textContent = session.mode === 'starter'
+    ? '10 Soalan Pemula'
+    : session.mode === 'daily' ? 'Cabaran Harian' : `Misi: ${SKILLS[session.skill].title}`;
   document.getElementById('question-count').textContent = `${session.index + 1} / ${session.questions.length}`;
   document.getElementById('practice-progress').style.width = `${session.index / session.questions.length * 100}%`;
   document.getElementById('session-score').textContent = session.correct;
@@ -249,23 +260,45 @@ function completeSession() {
       state.streak = state.lastPracticeDate === localDate(-1) ? state.streak + 1 : 1;
       state.lastPracticeDate = today;
     }
+  } else if (session.mode === 'starter') {
+    state.onboardingComplete = true;
+    state.starterCompleted = true;
   }
   saveState();
   document.getElementById('question-screen').hidden = true;
   document.getElementById('completion-screen').hidden = false;
-  document.getElementById('completion-name').textContent = state.name;
+  document.getElementById('completion-name').textContent = state.name || 'Pelajar';
   document.getElementById('completion-score').textContent = `${session.correct}/${session.questions.length}`;
   document.getElementById('completion-coins').textContent = `+${coinsEarned}`;
-  document.getElementById('completion-message').textContent = session.correct === session.questions.length
-    ? 'Semua betul! Kamu sudah bersedia untuk cabaran seterusnya.'
-    : 'Setiap jawapan membantu otak belajar. Datang semula esok untuk menguatkannya.';
+  document.getElementById('completion-message').textContent = session.mode === 'starter'
+    ? 'Langkah pertama selesai! Latihan harian kamu kini sedia untuk dimulakan.'
+    : session.correct === session.questions.length
+      ? 'Semua betul! Kamu sudah bersedia untuk cabaran seterusnya.'
+      : 'Setiap jawapan membantu otak belajar. Datang semula esok untuk menguatkannya.';
 }
 
 function closePractice() {
   document.getElementById('practice-overlay').hidden = true;
   document.body.style.overflow = '';
   session = null;
+  updateAppVisibility();
   renderDashboard();
+}
+
+function updateAppVisibility() {
+  const isReady = Boolean(state.onboardingComplete);
+  document.getElementById('onboarding-view').hidden = isReady;
+  document.getElementById('app-header').hidden = !isReady;
+  document.getElementById('app-main').hidden = !isReady;
+  if (!isReady) {
+    document.getElementById('onboarding-name').value = state.name === 'Pelajar' ? '' : state.name || '';
+    document.querySelectorAll('input[name="gender"]').forEach((input) => { input.checked = input.value === state.gender; });
+    document.querySelectorAll('.avatar-option').forEach((option) => {
+      const selected = option.dataset.avatar === (state.avatar || '🦊');
+      option.classList.toggle('selected', selected);
+      option.setAttribute('aria-pressed', String(selected));
+    });
+  }
 }
 
 function showToast(message) {
@@ -318,6 +351,7 @@ document.getElementById('import-progress').addEventListener('change', async (eve
     saveState();
     renderDashboard();
     renderParent();
+    updateAppVisibility();
     showToast('Kemajuan berjaya diimport.');
   } catch {
     showToast('Fail sandaran tidak dapat dibaca.');
@@ -331,7 +365,35 @@ document.getElementById('reset-progress').addEventListener('click', () => {
   saveState();
   renderDashboard();
   renderParent();
+  updateAppVisibility();
   showToast('Kemajuan telah ditetapkan semula.');
+});
+
+document.querySelectorAll('.avatar-option').forEach((button) => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('.avatar-option').forEach((option) => {
+      const selected = option === button;
+      option.classList.toggle('selected', selected);
+      option.setAttribute('aria-pressed', String(selected));
+    });
+  });
+});
+
+document.getElementById('onboarding-form').addEventListener('submit', (event) => {
+  event.preventDefault();
+  const name = document.getElementById('onboarding-name').value.trim();
+  if (!name) {
+    document.getElementById('onboarding-error').hidden = false;
+    document.getElementById('onboarding-name').focus();
+    return;
+  }
+  document.getElementById('onboarding-error').hidden = true;
+  state.name = name;
+  state.gender = document.querySelector('input[name="gender"]:checked')?.value || '';
+  state.avatar = document.querySelector('.avatar-option.selected')?.dataset.avatar || '🦊';
+  saveState();
+  document.getElementById('onboarding-view').hidden = true;
+  startSession('starter');
 });
 
 document.addEventListener('keydown', (event) => {
@@ -342,4 +404,5 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js').catch(() => {}));
 }
 
+updateAppVisibility();
 renderDashboard();

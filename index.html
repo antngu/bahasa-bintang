@@ -21,7 +21,56 @@
     <div class="ambient ambient-one"></div>
     <div class="ambient ambient-two"></div>
 
-    <header class="topbar">
+    <section id="onboarding-view" class="onboarding-view" aria-labelledby="onboarding-heading">
+      <div class="onboarding-card">
+        <div class="onboarding-brand">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <strong>Bahasa Bintang</strong>
+        </div>
+        <span class="eyebrow">Selamat datang</span>
+        <h1 id="onboarding-heading">Mari cipta watak kamu</h1>
+        <p class="onboarding-intro">
+          Selepas ini, jawab 10 soalan pemula supaya latihan kamu bermula pada tahap yang sesuai.
+        </p>
+
+        <form id="onboarding-form">
+          <label class="field-label" for="onboarding-name">Apakah nama panggilan kamu?</label>
+          <input id="onboarding-name" class="onboarding-input" maxlength="24" autocomplete="off" placeholder="Contoh: Alya" required />
+
+          <fieldset class="choice-fieldset">
+            <legend>Jantina <span>(pilihan)</span></legend>
+            <div class="gender-options">
+              <label><input type="radio" name="gender" value="perempuan" /><span>Perempuan</span></label>
+              <label><input type="radio" name="gender" value="lelaki" /><span>Lelaki</span></label>
+              <label><input type="radio" name="gender" value="tidak-dinyatakan" /><span>Tidak mahu nyatakan</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="choice-fieldset avatar-fieldset">
+            <legend>Pilih avatar kamu</legend>
+            <div class="avatar-options" role="radiogroup" aria-label="Choose an avatar">
+              <button type="button" class="avatar-option selected" data-avatar="🦊" aria-label="Fox avatar" aria-pressed="true">🦊</button>
+              <button type="button" class="avatar-option" data-avatar="🐼" aria-label="Panda avatar" aria-pressed="false">🐼</button>
+              <button type="button" class="avatar-option" data-avatar="🐯" aria-label="Tiger avatar" aria-pressed="false">🐯</button>
+              <button type="button" class="avatar-option" data-avatar="🐰" aria-label="Rabbit avatar" aria-pressed="false">🐰</button>
+              <button type="button" class="avatar-option" data-avatar="🐨" aria-label="Koala avatar" aria-pressed="false">🐨</button>
+              <button type="button" class="avatar-option" data-avatar="🦁" aria-label="Lion avatar" aria-pressed="false">🦁</button>
+            </div>
+          </fieldset>
+
+          <p id="onboarding-error" class="form-error" role="alert" hidden>Sila masukkan nama panggilan.</p>
+          <button class="primary-button onboarding-button" type="submit">
+            Mulakan 10 soalan pemula <span aria-hidden="true">→</span>
+          </button>
+          <p class="local-note">⌂ Nama, pilihan dan jawapan kekal pada peranti ini.</p>
+        </form>
+      </div>
+      <div class="onboarding-decoration" aria-hidden="true">
+        <span>apa</span><span>siapa</span><span>di mana</span><span>kerana</span>
+      </div>
+    </section>
+
+    <header id="app-header" class="topbar" hidden>
       <a class="brand" href="#home" aria-label="Bahasa Bintang home">
         <span class="brand-mark" aria-hidden="true">B</span>
         <span>
@@ -37,12 +86,12 @@
       </nav>
 
       <div class="profile-chip" title="Progress is saved only on this device">
-        <span class="avatar" aria-hidden="true">⭐</span>
+        <span id="profile-avatar" class="avatar" aria-hidden="true">🦊</span>
         <span><strong id="profile-name">Pelajar</strong><small>Disimpan di sini</small></span>
       </div>
     </header>
 
-    <main class="shell">
+    <main id="app-main" class="shell" hidden>
       <section id="home-view" class="view active" aria-labelledby="welcome-heading">
         <div class="hero-card">
           <div class="hero-copy">
