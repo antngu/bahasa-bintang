@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#5b4bdb" />
+    <meta
+      name="description"
+      content="A cheerful, private Bahasa Malaysia practice app for young learners."
+    />
+    <meta property="og:title" content="Bahasa Bintang" />
+    <meta
+      property="og:description"
+      content="Small daily Bahasa Malaysia adventures that build confidence."
+    />
+    <title>Bahasa Bintang</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="Bahasa Bintang home">
+        <span class="brand-mark" aria-hidden="true">B</span>
+        <span>
+          <strong>Bahasa Bintang</strong>
+          <small>Belajar sedikit, bersinar selalu</small>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-button active" data-view="home">Hari Ini</button>
+        <button class="nav-button" data-view="skills">Kemahiran</button>
+        <button class="nav-button" data-view="parent">Untuk Ibu Bapa</button>
+      </nav>
+
+      <div class="profile-chip" title="Progress is saved only on this device">
+        <span class="avatar" aria-hidden="true">⭐</span>
+        <span><strong id="profile-name">Pelajar</strong><small>Disimpan di sini</small></span>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section id="home-view" class="view active" aria-labelledby="welcome-heading">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <span class="eyebrow">Pengembaraan hari ini</span>
+            <h1 id="welcome-heading">Hai, <span id="welcome-name">Pelajar</span>!</h1>
+            <p>
+              Sepuluh soalan kecil. Satu langkah besar untuk lebih yakin berbahasa Melayu.
+            </p>
+            <button id="start-daily" class="primary-button">
+              <span id="daily-button-label">Mulakan cabaran</span>
+              <span aria-hidden="true">→</span>
+            </button>
+            <p class="microcopy">Kira-kira 10 minit · Tiada pemasa · Petunjuk dibenarkan</p>
+          </div>
+
+          <div class="journey-card" aria-label="Today's challenge progress">
+            <div class="progress-orbit" id="daily-orbit">
+              <div>
+                <strong id="daily-progress-number">0/10</strong>
+                <span>soalan</span>
+              </div>
+            </div>
+            <div class="mascot" aria-hidden="true">
+              <span class="mascot-face">◕‿◕</span>
+              <span class="mascot-label">Bintang</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-grid" aria-label="Learning summary">
+          <article class="stat-card streak">
+            <span class="stat-icon" aria-hidden="true">🔥</span>
+            <div><strong id="streak-value">0</strong><span>hari berturut-turut</span></div>
+          </article>
+          <article class="stat-card coins">
+            <span class="stat-icon" aria-hidden="true">●</span>
+            <div><strong id="coin-value">0</strong><span>syiling bintang</span></div>
+          </article>
+          <article class="stat-card xp">
+            <span class="stat-icon" aria-hidden="true">✦</span>
+            <div><strong id="xp-value">0</strong><span>mata pengalaman</span></div>
+          </article>
+        </div>
+
+        <section class="section-block" aria-labelledby="missions-heading">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Pilih satu misi</span>
+              <h2 id="missions-heading">Belajar mengikut topik</h2>
+            </div>
+            <button class="text-button" data-view-link="skills">Lihat semua kemahiran →</button>
+          </div>
+          <div id="mission-grid" class="mission-grid"></div>
+        </section>
+      </section>
+
+      <section id="skills-view" class="view" aria-labelledby="skills-heading">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">Peta pembelajaran</span>
+            <h1 id="skills-heading">Kemahiran saya</h1>
+            <p>Ulang kaji topik yang masih berkembang dan raikan yang sudah dikuasai.</p>
+          </div>
+          <div class="legend"><span></span> Penguasaan berdasarkan jawapan pada peranti ini</div>
+        </div>
+        <div id="skill-list" class="skill-list"></div>
+      </section>
+
+      <section id="parent-view" class="view" aria-labelledby="parent-heading">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">Ringkasan peribadi</span>
+            <h1 id="parent-heading">Untuk ibu bapa</h1>
+            <p>Semua maklumat ini kekal dalam pelayar pada peranti ini.</p>
+          </div>
+          <span class="privacy-badge">⌂ Local sahaja</span>
+        </div>
+
+        <div class="parent-grid">
+          <article class="panel parent-summary">
+            <h2>Ringkasan pembelajaran</h2>
+            <div class="summary-row"><span>Jumlah soalan dijawab</span><strong id="total-attempts">0</strong></div>
+            <div class="summary-row"><span>Ketepatan keseluruhan</span><strong id="overall-accuracy">—</strong></div>
+            <div class="summary-row"><span>Kemahiran terkuat</span><strong id="strongest-skill">Belum tersedia</strong></div>
+            <div class="summary-row"><span>Perlu lebih latihan</span><strong id="review-skill">Belum tersedia</strong></div>
+          </article>
+
+          <article class="panel settings-panel">
+            <h2>Tetapan</h2>
+            <label for="learner-name">Nama paparan pelajar</label>
+            <div class="inline-form">
+              <input id="learner-name" maxlength="24" placeholder="Contoh: Alya" />
+              <button id="save-name" class="secondary-button">Simpan</button>
+            </div>
+
+            <div class="backup-actions">
+              <button id="export-progress" class="secondary-button">Eksport kemajuan</button>
+              <label class="secondary-button file-label" for="import-progress">Import kemajuan</label>
+              <input id="import-progress" type="file" accept="application/json" hidden />
+              <button id="reset-progress" class="danger-button">Tetapkan semula</button>
+            </div>
+            <p class="helper-text">
+              Eksport satu fail sandaran dari semasa ke semasa. Memadam data laman atau bertukar
+              peranti boleh menghilangkan kemajuan yang disimpan.
+            </p>
+          </article>
+        </div>
+
+        <article class="panel parent-tip">
+          <span aria-hidden="true">💬</span>
+          <div>
+            <h2>Perbualan minggu ini</h2>
+            <p>
+              Tanya: <strong>“Apakah makanan kegemaran kamu? Mengapa?”</strong> Terima jawapan
+              pendek dahulu, kemudian bantu tambah satu sebab menggunakan <em>kerana</em>.
+            </p>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <div id="practice-overlay" class="practice-overlay" hidden>
+      <section class="practice-card" role="dialog" aria-modal="true" aria-labelledby="practice-title">
+        <header class="practice-header">
+          <button id="close-practice" class="icon-button" aria-label="Close practice">×</button>
+          <div class="practice-progress-wrap">
+            <div class="practice-meta">
+              <span id="practice-title">Cabaran Harian</span>
+              <strong id="question-count">1 / 10</strong>
+            </div>
+            <div class="progress-track"><span id="practice-progress"></span></div>
+          </div>
+          <div class="session-score"><span aria-hidden="true">★</span><strong id="session-score">0</strong></div>
+        </header>
+
+        <div id="question-screen" class="question-screen">
+          <div class="question-tags">
+            <span id="question-skill" class="skill-pill">Kosa kata</span>
+            <button id="speak-question" class="listen-button" title="Listen to the question">🔊 Dengar</button>
+          </div>
+          <p id="question-instruction" class="question-instruction">Pilih jawapan yang betul.</p>
+          <h2 id="question-prompt"></h2>
+          <div id="answer-options" class="answer-options"></div>
+          <div id="feedback-box" class="feedback-box" hidden>
+            <div>
+              <strong id="feedback-title"></strong>
+              <p id="feedback-text"></p>
+            </div>
+            <button id="next-question" class="primary-button">Seterusnya →</button>
+          </div>
+        </div>
+
+        <div id="completion-screen" class="completion-screen" hidden>
+          <div class="celebration" aria-hidden="true">★</div>
+          <span class="eyebrow">Misi selesai!</span>
+          <h2>Bagus sekali, <span id="completion-name">Pelajar</span>!</h2>
+          <p id="completion-message"></p>
+          <div class="completion-stats">
+            <div><strong id="completion-score">0/10</strong><span>betul</span></div>
+            <div><strong id="completion-coins">+0</strong><span>syiling</span></div>
+          </div>
+          <button id="finish-session" class="primary-button">Kembali ke halaman utama</button>
+        </div>
+      </section>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="./app.js" defer></script>
+  </body>
+</html>

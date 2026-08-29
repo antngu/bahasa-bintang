@@ -1,0 +1,11 @@
+{
+  "name": "Bahasa Bintang",
+  "short_name": "Bintang",
+  "description": "Small daily Bahasa Malaysia adventures for young learners.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fbf8f2",
+  "theme_color": "#5b4bdb",
+  "icons": []
+}
