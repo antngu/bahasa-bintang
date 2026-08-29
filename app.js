@@ -310,6 +310,7 @@ function startSession(mode, skill = null) {
 function renderQuestion() {
   const question = session.questions[session.index];
   session.answered = false;
+  document.getElementById('question-screen').scrollTop = 0;
   document.getElementById('practice-title').textContent = session.mode === 'starter'
     ? t('starterTitle')
     : session.mode === 'daily' ? t('dailyTitle') : `${t('missionPrefix')}: ${skillTitle(session.skill)}`;
@@ -352,6 +353,10 @@ function answerQuestion(selected, selectedButton) {
   document.getElementById('feedback-text').textContent = question.explanation;
   document.getElementById('feedback-box').hidden = false;
   document.getElementById('session-score').textContent = session.correct;
+  requestAnimationFrame(() => {
+    const questionScreen = document.getElementById('question-screen');
+    questionScreen.scrollTo({ top: questionScreen.scrollHeight, behavior: 'smooth' });
+  });
 }
 
 function nextQuestion() {
